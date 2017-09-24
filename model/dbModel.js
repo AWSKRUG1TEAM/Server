@@ -4,21 +4,14 @@
 
 var Sequelize = require('sequelize');
 
-function DbModel(sequelize){
+export default class DbModel {
+  constructor(sequelize) {
+    this.models = {};
+    this.models['user'] = sequelize.define('user', {
+      username: Sequelize.STRING,
+      birthday: Sequelize.DATE
+    });
 
-  this.models = {
-
-  };
-
-  this.models['user'] = sequelize.define('user', {
-    username: Sequelize.STRING,
-    birthday: Sequelize.DATE
-  });
-
-  return this.models;
+    return this.models;
+  }
 }
-
-
-module.exports = DbModel;
-
-

@@ -5,9 +5,8 @@ const express = require('express');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const Sequelize = require('sequelize');
-var Promise = require('bluebird');
-
+// const Sequelize = require('sequelize');
+// var Promise = require('bluebird');
 
 /****
  * Internal Dependency
@@ -25,15 +24,15 @@ app.use(cookieParser());
  * Sequelize Initialize
  ****/
 
-const DbService = require('./service/dbService');
-const DbModel = require('./model/dbModel');
+import DbService from './service/dbService';
+// const DbModel = require('./model/dbModel');
 
 var dbService = new DbService({
   dbHost: 'localhst',
   dbPort: '5432',
-  dbUsername: '', // Todo: Need to set in ENV variale
-  dbPassword: '', // Todo: Need to set in ENV variale
-  dbName: 'myvideoroom',
+  dbUsername: 'yuhogyun', // Todo: Need to set in ENV variale
+  dbPassword: 'ghrbsdl114', // Todo: Need to set in ENV variale
+  dbName: 'awskrug', // Todo: Need to set in ENV variale
   dbLogging: 'true'
 });
 
@@ -51,7 +50,7 @@ app.use(function(err, req, res, next) {
 });
 
 dbService.sync().then(() => {
-  dbService.createTest();
+  dbService.createExampleInsert();
 });
 
 module.exports = app;
